@@ -8,6 +8,7 @@ autopep8 = "*"
 
 [packages]
 requests = "*"
+pyquery = "*"
 
 [requires]
 python_version = "3.8"
