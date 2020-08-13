@@ -63,8 +63,8 @@ def getVideoInfo():
             file.write(f' 投稿者: [{key}]')
             file.write('\n')
             file.write(
-                '\n'.join([f' [{title}]'for title in sorted_result[key]]))
-            file.write('\n')
+                '\n'.join([f'  [{title}]'for title in sorted_result[key]]))
+            file.write('\n\n')
     print('Successfully finished!')
 
 
