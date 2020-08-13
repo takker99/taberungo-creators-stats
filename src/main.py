@@ -1,4 +1,5 @@
 import requests
+import datetime
 from pyquery import PyQuery as pq
 
 def getUserNameFromId(userId):
@@ -23,7 +24,8 @@ def getVideoInfo():
         '_context': 'taberungo-creators-stats',
     }
     temp = []
-    for i in range(7):
+    now_month = datetime.datetime.now()
+    for i in range(now_month.month):
         for j in range(16):
             data_range = {'_limit': 100,
                           'filters[startTime][gte]': f'2020-0{1+i}-01T00:00:00+09:00',
@@ -33,7 +35,8 @@ def getVideoInfo():
             response = requests.get(
                 'https://api.search.nicovideo.jp/api/v2/video/contents/search', params={**options, **data_range})
             # 全て取得し終えたら終了する
-            if (response.json() == []):
+            if (response.json()['data'] == []):
+                print('skip')
                 break
             # print(response.json())
             temp += response.json()['data']
