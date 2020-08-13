@@ -23,11 +23,11 @@ def getVideoInfo():
         '_context': 'taberungo-creators-stats',
     }
     temp = []
-    for i in [0, 4]:
+    for i in range(7):
         for j in range(16):
             data_range = {'_limit': 100,
                           'filters[startTime][gte]': f'2020-0{1+i}-01T00:00:00+09:00',
-                          'filters[startTime][lt]': f'2020-0{4+i}-01T00:00:00+09:00',
+                          'filters[startTime][lt]': f'2020-0{2+i}-01T00:00:00+09:00',
                           '_offset': j*100}
             print(f'getting data: [{j*100}, {j*100+99}[')
             response = requests.get(
@@ -37,6 +37,7 @@ def getVideoInfo():
                 break
             # print(response.json())
             temp += response.json()['data']
+
     print('Finish loading all data')
 
     print('Analyzing data...')
